@@ -8,6 +8,6 @@ namespace Encryption.CaesarCipher.Interfaces
 {
     public interface IStringShifter
     {
-        string Shift(string str);
+        string Shift();
     }
 }

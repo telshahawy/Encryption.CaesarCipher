@@ -17,22 +17,25 @@ namespace Encryption.CaesarCipher
         [Benchmark]
         public string BasicStringShift()
         {
-            IStringShifter shifter = new BasicStringShifter(5);
-            var result = shifter.Shift("HELLOFROMTHEOTHERSIDE");
+            string input = "HELLOFROMTHEOTHERSIDE";
+            IStringShifter shifter = new BasicStringShifter(5, input);
+            var result = shifter.Shift();
             return result;
         }
         [Benchmark]
         public string ReadOnlySpanStringShift()
         {
-            IStringShifter shifter = new SpanStringShifter(5);
-            var result = shifter.Shift("HELLOFROMTHEOTHERSIDE");
+            string input = "HELLOFROMTHEOTHERSIDE";
+            IStringShifter shifter = new SpanStringShifter(5, input);
+            var result = shifter.Shift();
             return result;
         }
         [Benchmark]
         public string StringBuilderStringShift()
         {
-            IStringShifter shifter = new StringBuilderStringShifter(5);
-            var result = shifter.Shift("HELLOFROMTHEOTHERSIDE");
+            string input = "HELLOFROMTHEOTHERSIDE";
+            IStringShifter shifter = new StringBuilderStringShifter(5, input);
+            var result = shifter.Shift();
             return result;
         }
     }

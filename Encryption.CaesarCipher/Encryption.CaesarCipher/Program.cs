@@ -15,8 +15,8 @@ namespace Encryption.CaesarCipher
             string input = Console.ReadLine();
             if (input != null)
             {
-                IStringShifter shifter = new SpanStringShifter(shift);
-                output = shifter.Shift(input);
+                IStringShifter shifter = new SpanStringShifter(shift, input);
+                output = shifter.Shift();
             }
             Console.WriteLine("Output: " + output);
 

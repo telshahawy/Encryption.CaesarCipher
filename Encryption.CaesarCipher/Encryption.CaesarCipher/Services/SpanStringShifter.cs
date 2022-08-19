@@ -1,4 +1,5 @@
-﻿using Encryption.CaesarCipher.Interfaces;
+﻿using Encryption.CaesarCipher.Abstracts;
+using Encryption.CaesarCipher.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,25 +8,23 @@ using System.Threading.Tasks;
 
 namespace Encryption.CaesarCipher.Services
 {
-    public class SpanStringShifter : IStringShifter
+    public class SpanStringShifter : StringShifterValidator, IStringShifter
     {
         private readonly int _shift;
-        public SpanStringShifter(int shift)
+        private readonly string _input;
+        public SpanStringShifter(int shift, string input) : base(input)
         {
             _shift = shift;
+            _input = input;
         }
-        public string Shift(string input)
+        public string Shift()
         {
-            return string.Create(input.Length, input, (span, value) =>
+            return string.Create(_input.Length, _input, (span, value) =>
             {
                 value.AsSpan().CopyTo(span);
                 for (int i = 0; i < span.Length; i++)
                 {
-                    if (input[i] < 65 || input[i] > 90)
-                    {
-                        throw new Exception("Only A-Z supported.");
-                    }
-                    int shifted = input[i] + _shift;
+                    int shifted = _input[i] + _shift;
 
                     if (shifted > 90)
                     {
